@@ -1,0 +1,38 @@
+<?import com.gui.axis.DateAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.layout.*?>
+<?import org.controlsfx.control.CheckListView?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ListView?>
+<GridPane fx:controller="com.gui.Controller"
+          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10" >
+    <CheckListView fx:id="checkListView"
+                   prefWidth="150"
+                   GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.rowSpan = "3"
+
+    />
+    <DatePicker fx:id="datepickerFrom" GridPane.columnIndex="1" GridPane.rowIndex="0" onAction="#updateDatepicker"/>
+    <DatePicker fx:id="datepickerTo" GridPane.columnIndex="4" GridPane.rowIndex="0" onAction="#updateDatepicker"/>
+    <LineChart fx:id="chart1" title="Rates chart"
+               prefWidth="800"
+               GridPane.columnIndex="1" GridPane.columnSpan="4"
+               GridPane.rowIndex="1" GridPane.rowSpan="2">
+
+        <xAxis>
+            <DateAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+            <NumberAxis side="LEFT" />
+        </yAxis>
+    </LineChart>
+    <ListView  fx:id="trends" GridPane.columnIndex="5" GridPane.rowIndex="0" GridPane.rowSpan = "3"
+               prefWidth="150"
+        focusTraversable="false">
+    </ListView>
+
+    <ListView  fx:id="predicitons" GridPane.columnIndex="6"  GridPane.columnSpan="2" GridPane.rowIndex="0" GridPane.rowSpan = "3"
+               prefWidth="400"
+               focusTraversable="false">
+    </ListView>
+</GridPane>

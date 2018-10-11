@@ -1,0 +1,55 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.0.4.RELEASE'
+    id 'net.ltgt.apt' version '0.10'
+
+}
+
+compileJava {
+    options.encoding = "UTF-8"
+    options.incremental = true
+
+    options.compilerArgs.addAll([
+            "--add-exports",
+            "javafx.controls/com.sun.javafx.charts=ALL-UNNAMED"
+    ])
+}
+
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'groovy'
+
+
+group 'stock'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = '9'
+targetCompatibility = '9'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.apache.commons', name: 'commons-math3', version: '3.0'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
+    compile group: 'com.google.guava', name: 'guava', version: '11.0.2'
+    compile group: 'org.controlsfx', name: 'controlsfx', version: '9.0.0'
+    compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.2.4'
+    compile ('org.springframework.boot:spring-boot-starter-webflux')
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+    compile group: 'com.h2database', name: 'h2', version: '1.4.196'
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.12.Final'
+    compile group: 'cglib', name: 'cglib-nodep', version: '3.2.4'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile "org.spockframework:spock-core:1.1-groovy-2.4"
+    testCompile group: 'org.springframework', name: 'spring-test', version: '5.0.8.RELEASE'
+    compileOnly 'org.projectlombok:lombok:1.18.2'
+    apt 'org.projectlombok:lombok:1.18.2'
+}
+
+test {
+    afterTest { desc, result ->
+        logger.quiet "Executing test ${desc.name} [${desc.className}] with result: ${result.resultType}"
+    }
+}

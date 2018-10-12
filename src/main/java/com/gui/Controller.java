@@ -37,7 +37,7 @@ public class Controller implements Initializable {
     private ExecutorService executorService = Executors.newFixedThreadPool(3);
 
     @FXML
-    private LineChart<Date, Number> chart1;
+    private LineChart<Date, Number> ratesChart;
 
     @FXML
     private CheckListView<String> checkListView;
@@ -81,7 +81,7 @@ public class Controller implements Initializable {
                 addTrend(currency);
             } else {
                 Platform.runLater(() -> {
-                    chart1.getData().removeIf(series -> series.getName().equals(c.getRemoved().get(0)));
+                    ratesChart.getData().removeIf(series -> series.getName().equals(c.getRemoved().get(0)));
                     trends.getItems().removeIf(trend -> trend.getText().contains(c.getRemoved().get(0)));
                 });
             }
@@ -91,7 +91,7 @@ public class Controller implements Initializable {
 
     private void updateFullModel() {
         Platform.runLater(() -> {
-            chart1.getData().clear();
+            ratesChart.getData().clear();
             predicitons.getItems().clear();
             trends.getItems().clear();
         });
@@ -111,7 +111,7 @@ public class Controller implements Initializable {
         series1.setName(currency);
         ratesService.getRates(currency, datepickerFrom.getValue(), datepickerTo.getValue())
                 .forEach(rate -> series1.getData().add(new XYChart.Data<>(DateUtil.fromLocalDate(rate.getEffectiveDate()), rate.getValue())));
-        Platform.runLater(() -> chart1.getData().add(series1));
+        Platform.runLater(() -> ratesChart.getData().add(series1));
     }
 
     private void updateTrends() {

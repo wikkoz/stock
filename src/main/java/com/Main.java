@@ -32,7 +32,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Rates chart");
         Scene scene = new Scene(root, 1600, 600);
         primaryStage.setScene(scene);
         primaryStage.show();

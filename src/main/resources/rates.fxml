@@ -14,7 +14,7 @@
     />
     <DatePicker fx:id="datepickerFrom" GridPane.columnIndex="1" GridPane.rowIndex="0" onAction="#updateDatepicker"/>
     <DatePicker fx:id="datepickerTo" GridPane.columnIndex="4" GridPane.rowIndex="0" onAction="#updateDatepicker"/>
-    <LineChart fx:id="chart1" title="Rates chart"
+    <LineChart fx:id="ratesChart" title="Rates chart"
                prefWidth="800"
                GridPane.columnIndex="1" GridPane.columnSpan="4"
                GridPane.rowIndex="1" GridPane.rowSpan="2">
@@ -23,7 +23,7 @@
             <DateAxis side="BOTTOM" />
         </xAxis>
         <yAxis>
-            <NumberAxis side="LEFT" />
+            <NumberAxis side="LEFT" forceZeroInRange="false"/>
         </yAxis>
     </LineChart>
     <ListView  fx:id="trends" GridPane.columnIndex="5" GridPane.rowIndex="0" GridPane.rowSpan = "3"
